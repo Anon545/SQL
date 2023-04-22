@@ -1,0 +1,21 @@
+# простые запросы
+select
+	first_name,
+	last_name
+from hr.employees;
+- - - - -
+select
+	last_name, 
+	first_name as name
+	salary * 0.016 
+from hr.employees;
+- - - - - -
+select
+	*
+from hr.employees
+where job_id= 'It_prog';
+- - - - - -
+select
+	*
+from hr.employees
+where salary < 10000;
