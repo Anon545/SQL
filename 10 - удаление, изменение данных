@@ -84,3 +84,6 @@ set age = age +5
 where id = 3;
 - - - - -
 1 raw(s) updated. Изменена строка с id = 3, с возраста X на возраст +5
+Id	Name	Last_name	Age	phone	Driver_licence
+...
+3	Гайк	Инанс	40	899999	0
