@@ -1,0 +1,20 @@
+select
+	Employee_id
+	,First_name        # запятую ',' можно ставить перед параметром, а не после него
+	,last_name
+	,Email
+	,Hire_date    #день рождения
+from hr.employees where Salary > 10000 and Department_id <> 90;
+#вывод:  Только те строки, которые указали в запросе на вывод (id, name, name, email, hire_date)
+- - - - - - - -
+# комментирование кода, для не выполнения его части. Ctrl+\
+SELECT
+	Employee_id
+	,First_name
+	,last_name
+	,Email
+	,Hire_date    #день рождения
+FROM hr.employees 
+WHERE Salary > 10000 
+-- AND Department_id == 90;
+
