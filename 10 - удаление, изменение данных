@@ -1,0 +1,86 @@
+1 - удаление данных
+Чтобы удалить данные, нужно сначала создать таблицу с данными
+create table users(
+	id integer primary key,
+	name varchar(128) not null,
+	last_name varchar(128) not null,
+	age integer chek (age between 0 and 120),
+	phone varchar (32) unique,
+	driver_licence integer default 0
+);
+- - - - - -
+Insert into users(id, name, last_name, age, phone, driver_licence) values(1, 'Гайк', 'Инанс', 29, 899997, 1); 
+Insert into users(id, name, last_name, age, phone, driver_licence) values(2, 'Гайк', 'Инанс', 29, 899998, 1); 
+Insert into users(id, name, last_name, age, phone, driver_licence) values(3, 'Гайк', 'Инанс', 29, 899999, 1); 
+- - - 
+вывод: select * from users;
+Id	Name	Last_name	Age	phone	Driver_licence
+1	Гайк	Инанс	29	899997	1
+2	Гайк	Инанс	29	899998	1
+3	Гайк	Инанс	29	899999	1
+
+чтобы удалить пользователя из таблицы, используется оператор Delete
+delete - удаление данных из таблицы
+delete from users
+where id = 2;
+- - - - -
+1 raw(s) deleted - 1 строка удалена
+select * from users;
+Id	Name	Last_name	Age	phone	Driver_licence
+1	Гайк	Инанс	29	899997	1
+3	Гайк	Инанс	29	899999	1
+
+это удаление строки без смещения вверх. Т.е. id с позиции 3 не станет на позицию 2.
+Можно полностью удалить данные из таблицы, без условий where
+delete from users
+- - - - -
+2 raw(s) deleted - 2 строки удалены.
+select * from users - ничего не будет выведено.
+no data found
+- - - - -
+
+2 - очистка данных. Оператор Trancate
+trancate - очистка данных. Какая разница, я особо не понял. Разве что delete - это dml оператор, его действия направлены на работу с данными. Trancate - это ddl оператор, его действия направлены на таблицу. Хз.
+Так же trancate работает быстрее, т.к. работает без условий.
+trancate table users;
+- - - - -
+table trancated - таблица очищена ?
+select * from users - ничего не будет выведено.
+no data found
+Как-то так.
+- - - - -
+
+       3 - изменение данных. Оператор Update;  Set
+update - изменение данных.
+set - используется для указания блока для изменения.
+update users  #обновление таблицы users
+set age = 30
+where id = 3;
+- - - - -
+1 raw(s) updated. Изменена строка с id = 3, с возраста X на возраст 30.
+select * from users;
+Id	Name	Last_name	Age	phone	Driver_licence
+1	Гайк	Инанс	29	899997	1
+2	Гайк	Инанс	29	899998	1
+3	Гайк	Инанс	30	899999	1
+возраст id = 3 изменен на 30.
+
+Изменение нескольких значений аналогично, происходит через запятую
+update users  #обновление таблицы users
+set age = 35,
+     driver_licence = 0
+where id = 3;
+- - - - -
+1 raw(s) updated. Изменена строка с id = 3, с возраста X на возраст 35 и drive_licence на 0.
+select * from users;
+Id	Name	Last_name	Age	phone	Driver_licence
+1	Гайк	Инанс	29	899997	1
+2	Гайк	Инанс	29	899998	1
+3	Гайк	Инанс	35	899999	0
+- - - 
+Можно менять не только абсолютные значения, но и на относительные. На пример на +5.
+update users
+set age = age +5
+where id = 3;
+- - - - -
+1 raw(s) updated. Изменена строка с id = 3, с возраста X на возраст +5
