@@ -1,0 +1,37 @@
+1 - На этом занятии мы научимся указывать определенные ограничения, значения по умолчанию и дополнительные конфигурации.
+Констрейнты - ограничения (constraints )
+	not null - не даёт указывать значение Null для поля
+	unique - следит за уникальностью значений поля
+	primary key - оба предыдущих ограничения, только уникальные значения, без Null
+	check - позволяет указывать условие, которому должно соответствовать добавляемое значение
+ - - - - - - -
+ Пример: Создание таблицы
+create table users(
+	id integer primary key,
+	name varchar(128) not null,
+	last_name varchar(128) not null,
+	age integer check (age between 0 and 120),
+	phone varchar (32) unique   #1 байт = 1 символ. Для номера достаточно 32 символов.  #мб достаточно и 16 символов
+);
+- - - -- - -
+Таблица создалась. Только она будет не видна, пока её не вывести с помощью Select.
+select
+	*
+from users;
+- - - - - - - - -
+Добавим в таблицу значение 'наличие водительского удостоверения'. Для хранения информации о наличии в/у. Если не указать наличие ву у пользователя, будет считаться, что его у него нет. 
+Для реализации этого, добавим значение default.
+drop table users   #удаляет текущую таблицу и далее создает новую
+create table users(
+	id integer primary key,
+	name varchar(128) not null,
+	last_name varchar(128) not null,
+	age integer chek (age between 0 and 120),
+	phone varchar (32) unique,
+	driver_licence integer default 0
+);
+- - - - - -
+table dropped.
+table created.
+#Без ввода значения в поле вод.удостов, там ничего нет. Если добавить, то будет.
+Insert into users(id, name, last_name, age, phone, driver_licence) values(2, 'Гайк', 'Инанс', 29, 899997, 1); 
